@@ -1,0 +1,36 @@
+
+<html lang="en">
+<link href="{{ url_for("static",filename="project.css") }}" type="text/css" rel="stylesheet" />
+<body>
+<h1>Accounts</h1>
+<hr>
+<form action="/" >
+<input type="text" name="search" >
+<input type="submit" value="Search" class="btn" >
+</form>
+<hr>
+<form action="{{ url_for("addAcc") }}" >
+<table border="2" cellpadding="5" cellspacing="5" >
+<tr><th>AccNo</th><th>Name</th><th>Balance</th><th>Commands</th></tr>
+<tr>
+    <td>AutoNo</td>
+    <td><input type="text" name="name" size="30" required ></td>
+    <td><input type="text" name="balance" size="5" required ></td>
+    <td><input type="submit" value="Add" class="btn" > </td>
+</tr>
+{% for rec in alst %}
+    <tr>
+    {% for val in rec %}
+        <td>{{ val }}</td>
+    {% endfor %}
+    <td>
+        <a href="{{ url_for("closeAcc",accno=rec[0]) }}" class="btn" >Close</a>
+        <a href="{{ url_for("deposit",accno=rec[0]) }}" class="btn" >Deposit</a>
+        <a href="{{ url_for("withdraw",accno=rec[0]) }}" class="btn" >Withdraw</a>
+    </td>
+    </tr>
+{% endfor %}
+</table>
+</form>
+</body>
+</html>

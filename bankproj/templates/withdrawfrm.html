@@ -1,0 +1,19 @@
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for("static",filename="project.css") }}" type="text/css">
+<body>
+<h1>Withdraw</h1>
+<hr>
+<table>
+    <tr><td>AccNo</td><td>{{ acc[0] }}</td></tr>
+    <tr><td>Name</td><td>{{ acc[1] }}</td></tr>
+    <tr><td>Balance</td><td>{{ acc[2] }}</td></tr>
+</table>
+<hr>
+<form action="{{ url_for("withdraw") }}" method="post" >
+<input type="hidden" name="accno" value="{{ acc[0] }}" >
+Amount : <input type="number" name="amt" size="5" required max="{{ acc[2] }}" />
+<input type="submit" value="Withdraw" class="btn" >
+</form>
+<hr>
+</body>
+</html>
